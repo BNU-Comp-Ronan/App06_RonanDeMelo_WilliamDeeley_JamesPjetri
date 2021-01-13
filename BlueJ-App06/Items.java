@@ -7,5 +7,5 @@
  */
 public enum Items
 {
-    NONE, KEY, FOOD, PICKAXE, LOCKPICK, KNUCKLES 
+    NONE, KEY, FOOD, PICKAXE, LOCKPICK, KNUCKLES
 }

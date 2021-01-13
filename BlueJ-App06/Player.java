@@ -11,9 +11,9 @@ public class Player
     private int health;
     private int score;
     private int moves;
-    
+
     private ArrayList<Items> items;
-    
+
     public Player(String name)
     {
         this.name = name;
@@ -22,17 +22,17 @@ public class Player
         moves = 0;
         score = 0;
     }
-    
+
     public int getScore()
     {
         return score;
     }
-    
+
     public void increaseScore(int amount)
     {
         score = score + amount;
     }
-    
+
     public void move()
     {
         moves++;
@@ -41,26 +41,40 @@ public class Player
             score--;
         }
     }
-    
+
     public String getName()
     {
         return name;
     }
-    
+
+    public int getHealth()
+    {
+        return score;
+    }
+
+    public void setHealth(int addHealth)
+    {
+        if (health >= 0 && health <= 90) 
+        {
+            health = health + addHealth;
+        }
+    }
+
     public void addItem(Items item)
     {
         items.add(item);
         score+= 10;
-        if(item == Items.FOOD)
-        {
-            health += 10;
-        }
     }
-    
+
+    public void inventory()
+    {
+        System.out.println(items.toString());
+    }
+
     public void print()
     {
         System.out.println("\n Moves: " + moves + " " 
-        + name + " Health: " + health 
-        + " Score: " + score + "\n");
+            + name + " Health: " + health 
+            + " Score: " + score + "\n");
     }
 }

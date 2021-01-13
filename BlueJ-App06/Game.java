@@ -97,9 +97,17 @@ public class Game
             case SEARCH:
             searchRoom(command);
             break;
-            
+
             case TAKE:
             takeItem();
+            break;
+
+            case ITEMS:
+            listInventory();
+            break;
+
+            case USE:
+            useItem(command);
             break;
 
             case QUIT:
@@ -162,13 +170,41 @@ public class Game
     {
         System.out.println("Items found: " + currentRoom.getItem());
     }
-    
+
     private void takeItem()
     {
         Items item = currentRoom.getItem();
-        player.addItem(item);
+        if (item == Items.NONE)
+        {
+            System.out.println("No items found in " + currentRoom);
+        }
+        else
+        {
+            player.addItem(item);
+            System.out.println(currentRoom.getItem() + " taken.");
+        }
     }
 
+    private void listInventory()
+    {
+        player.inventory();
+    }
+
+    private void useItem(Command command)
+    {
+        if(!command.hasSecondWord()) 
+        {
+            // check for valid input
+            System.out.println("use what?");
+            return;
+        }
+        String item = command.getSecondWord();
+        if (item == "food")
+        {
+            player.setHealth(10);
+        }
+    }
+    
     /** 
      * "Quit" was entered. Check the rest of the command to see
      * whether we really quit the game.
